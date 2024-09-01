@@ -1,0 +1,30 @@
+import {createPool} from "mysql2/promise";
+import {config} from "dotenv";
+config();
+
+const pool = createPool({
+    database: process.env.A_MYSQL_DATABASE_NAME,
+    host: process.env.A_MYSQL_HOST,
+    user: process.env.A_MYSQL_USER,
+    port: process.env.A_MYSQL_PORT, 
+    password: process.env.A_MYSQL_PASSWORD
+    
+});
+
+const  connectToDatabase =async()=> {
+    try {
+        await pool.getConnection();
+        console.log("database connection successful");
+        
+    } catch (error) {
+        console.log("database connection failed");
+        console.log(error);
+        throw error;
+    }
+}
+
+
+export {connectToDatabase,pool};
+
+
+
