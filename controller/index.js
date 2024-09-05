@@ -29,7 +29,6 @@ export const createContact = async (req,res) => {
     try {
         const contact = await create(contactId,name, number, email, message);
         return res.status(403).json({contact});
-        console.log(contact);
         
     } catch (error) {
         console.log(error);

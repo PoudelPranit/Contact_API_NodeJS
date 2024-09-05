@@ -1,7 +1,6 @@
 import express from "express";
 import appRouter from "./routes/index.js";
 import cors from "cors"; 
-
 import { connectToDatabase } from "./database/database.js";
 
 //config();
@@ -15,8 +14,8 @@ app.use(express.json());
 app.use("/api/contacts", appRouter);
 
 const allowedOrigins = process.env.NODE_ENV === 'production'
-    ? [''] // Replace with your Azure app's URL
-    : ['http://localhost:3000'];
+    ? [process.env.FRONTEND_URL] 
+    : [process.env.DEVLOPMENT_URL];
 
 app.use(cors({
     origin: allowedOrigins,
@@ -25,13 +24,16 @@ app.use(cors({
 }));
 
 
-const PORT = process.env.PORT||5000;
+
 
 connectToDatabase()
 .then(() => {
+    const PORT = process.env.A_PORT||5000;
     app.listen (PORT,()=>console.log("server listening on port ", PORT));
 }).catch(error=>{
     console.log("error database connection");
     console.log(error);
     process.exit(0);
 });
+
+

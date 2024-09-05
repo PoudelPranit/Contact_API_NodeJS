@@ -5,8 +5,8 @@ export const find = async() => {
     try {
         const client = await pool.getConnection();
         const result = await client.query(QUERY);
-        console.log(result);
         return result;
+        
     } catch (error) {
         console.log("error occured with query");
         console.log(error);
@@ -19,7 +19,6 @@ export const findById = async(id) => {
     try {
         const client = await pool.getConnection();
         const result = await client.query(QUERY,[id]);
-        console.log(result);
         return result[0];
     } catch (error) {
         console.log("error occured with query");
@@ -33,8 +32,7 @@ export const create = async(contactId, name , number, email, message) => {
     try {
         const client = await pool.getConnection();
         const result = await client.query(QUERY,[contactId, name, number, email,message]);
-        console.log(result);
-        
+        console.log(result);       
         return result;
     } catch (error) {
         console.log("error occured with query");
@@ -50,7 +48,6 @@ export const update = async(contactId, name , number, email, message) => {
         const client = await pool.getConnection();
         const result = await client.query(QUERY,[ name, number, email,message, contactId]);
         console.log(result);
-        
         return result;
     } catch (error) {
         console.log("error occured with query");

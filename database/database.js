@@ -1,5 +1,7 @@
 import {createPool} from "mysql2/promise";
 import {config} from "dotenv";
+import fs from 'fs';
+
 config();
 
 const pool = createPool({
@@ -7,7 +9,10 @@ const pool = createPool({
     host: process.env.A_MYSQL_HOST,
     user: process.env.A_MYSQL_USER,
     port: process.env.A_MYSQL_PORT, 
-    password: process.env.A_MYSQL_PASSWORD
+    password: process.env.A_MYSQL_PASSWORD,
+    ssl: {
+        ca: fs.readFileSync(process.env.CERT)
+      }
     
 });
 
@@ -15,14 +20,12 @@ const  connectToDatabase =async()=> {
     try {
         await pool.getConnection();
         console.log("database connection successful");
-        
     } catch (error) {
         console.log("database connection failed");
         console.log(error);
         throw error;
     }
 }
-
 
 export {connectToDatabase,pool};
 
