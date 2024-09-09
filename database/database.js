@@ -5,6 +5,8 @@ import fs from 'fs';
 config();
 
 const pool = createPool({
+
+    //credentials for mysql azure
     database: process.env.A_MYSQL_DATABASE_NAME,
     host: process.env.A_MYSQL_HOST,
     user: process.env.A_MYSQL_USER,
@@ -13,6 +15,14 @@ const pool = createPool({
     ssl: {
         ca: fs.readFileSync(process.env.CERT)
       }
+
+
+    // credentials for docker
+    // database: process.env.A_MYSQL_DATABASE_NAME,
+    // host: process.env.A_MYSQL_HOST,
+    // user: process.env.A_MYSQL_USER,
+    // port: process.env.A_MYSQL_PORT, 
+    // password: process.env.A_MYSQL_PASSWORD,
     
 });
 

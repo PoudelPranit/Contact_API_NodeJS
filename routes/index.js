@@ -6,9 +6,6 @@ import  {updateContact}  from "../controller/index.js";
 import  {createContact}  from "../controller/index.js";
 
 
-
-
-
 const appRouter = express.Router();
 
 appRouter.get("/getallcontacts", getAllContacts);

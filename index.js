@@ -28,7 +28,7 @@ app.use(cors({
 
 connectToDatabase()
 .then(() => {
-    const PORT = process.env.A_PORT||5000;
+    const PORT = process.env.A_PORT;
     app.listen (PORT,()=>console.log("server listening on port ", PORT));
 }).catch(error=>{
     console.log("error database connection");
