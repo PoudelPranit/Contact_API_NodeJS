@@ -15,8 +15,6 @@ const pool = createPool({
     ssl: {
         ca: fs.readFileSync(process.env.CERT)
       }
-
-
     // coonection string for docker sql connection
     // database: process.env.A_MYSQL_DATABASE_NAME,
     // host: process.env.A_MYSQL_HOST,
