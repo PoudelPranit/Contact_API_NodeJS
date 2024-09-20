@@ -34,6 +34,17 @@ const  connectToDatabase =async()=> {
         throw error;
     }
 }
+// reference connection string
+// const  connectToDatabase =async()=> {
+//     try {
+//         await pool.getConnection();
+//         console.log("database connection successful");
+//     } catch (error) {
+//         console.log("database connection failed");
+//         console.log(error);
+//         throw error;
+//     }
+// }
 
 export {connectToDatabase,pool};
 
